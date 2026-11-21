@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Kasir Sederhana</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Web Kasir</h1>
+    <nav>
+  <button id="tab-kasir" class="tab-button active">Kasir</button>
+  <button id="tab-riwayat" class="tab-button">Riwayat Transaksi</button>
+  <button id="tab-admin" class="tab-button">Admin Produk</button>
+</nav>
+  </header>
+
+<!-- Halaman Admin Produk -->
+<section id="admin-page" class="page hidden">
+  <div class="admin-header">
+    <h2>Admin Produk</h2>
+    <button id="back-to-kasir" class="button secondary">
+      Kembali ke Kasir
+    </button>
+  </div>
+
+  <div class="admin-layout">
+    <section class="admin-form-section">
+      <h3 id="admin-form-title">Tambah Produk</h3>
+
+      <form id="product-form">
+        <input type="hidden" id="product-id" />
+
+        <label for="product-name">Nama Produk</label>
+        <input
+          id="product-name"
+          type="text"
+          placeholder="Contoh: Kopi Susu"
+          required
+        />
+
+        <label for="product-price">Harga (Rp)</label>
+        <input
+          id="product-price"
+          type="number"
+          min="1"
+          step="any"
+          placeholder="0"
+          required
+        />
+
+        <label for="product-stock">Stok</label>
+        <input
+          id="product-stock"
+          type="number"
+          min="0"
+          step="1"
+          placeholder="0"
+          required
+        />
+
+        <label for="product-category">Kategori</label>
+        <input
+          id="product-category"
+          type="text"
+          placeholder="Contoh: Minuman"
+          required
+        />
+
+        <p id="admin-form-message" class="admin-form-message"></p>
+
+        <div class="admin-form-actions">
+          <button type="submit" class="button primary">
+            Simpan Produk
+          </button>
+          <button type="button" id="cancel-edit" class="button secondary hidden">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="admin-table-section">
+      <h3>Daftar Produk</h3>
+
+      <div class="table-wrapper">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Stok</th>
+              <th>Kategori</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="admin-product-list"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>
+  
+  <main>
+    <!-- Halaman Kasir -->
+    <section id="kasir-page" class="page">
+      <div class="layout">
+        <section class="product-section">
+          <h2>Daftar Produk</h2>
+
+          <input
+            id="product-search"
+            type="search"
+            placeholder="Cari produk..."
+            aria-label="Cari produk"
+          />
+
+          <div id="product-list" class="product-grid"></div>
+        </section>
+
+        <input
+  id="product-search"
+  type="search"
+  placeholder="Cari produk..."
+  aria-label="Cari produk"
+/>
+
+<select id="category-filter" aria-label="Filter kategori">
+  <option value="all">Semua Kategori</option>
+</select>
+
+<div id="product-list" class="product-grid"></div>
+        <aside class="cart-section">
+          <h2>Keranjang Belanja</h2>
+
+          <div id="cart-items" class="cart-items"></div>
+
+          <div class="cart-summary">
+            <div class="summary-row">
+              <span>Total Belanja</span>
+              <strong id="cart-total">Rp 0</strong>
+            </div>
+
+            <label for="payment-input">Uang Diterima</label>
+            <input
+              id="payment-input"
+              type="number"
+              min="0"
+              step="any"
+              placeholder="0"
+            />
+
+            <p id="payment-message" class="payment-message"></p>
+
+            <div class="cart-actions">
+              <button id="reset-cart" class="button secondary">Reset Keranjang</button>
+              <button id="print-receipt" class="button secondary">Cetak Struk</button>
+              <button id="pay-button" class="button primary">Bayar</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Halaman Riwayat -->
+    <section id="history-page" class="page hidden">
+      <div class="history-header">
+        <h2>Riwayat Transaksi</h2>
+        <button id="clear-history" class="button danger">Hapus Riwayat</button>
+      </div>
+
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
